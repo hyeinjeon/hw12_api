@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: rgb(184, 182, 182);
+      }
+    .mainbox {
+        background-color: white;
+        margin: auto;
+        padding: 30px;
+        width: 50%;
+    }
+    input {
+        background-color: lightgray;
+        border-style: none;
+    }
+
+</style>
+
+    <div class="mainbox">
+    <h2>수정하기</h2>
+    <hr>
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{ edit_post.as_p }}
+        <button type="submit">submit</button>
+    </form>
+    </div>
+{% endblock %}

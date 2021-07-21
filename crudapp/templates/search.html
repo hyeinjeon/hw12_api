@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<style>
+    body {
+      background-color: rgb(184, 182, 182);
+    }
+    .container2 {
+      text-align: left;
+      margin: 10px auto;
+      padding: 20px;
+      border-style: none;
+      border-width: 2px;
+      background-color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      width: 70%;
+      display: inline-block;
+    }
+    .img {
+      float: left;
+      margin: 10px 30px 20px 10px;
+    }
+</style>
+
+
+{% if not blogs %}
+    <h1>검색 결과가 없습니다</h1>
+{% else %}
+
+{% for blog in blogs.all %}
+<div class="container2"> 
+    <div class="cards">
+      <div class="card-body">
+        <h2>{{ blog.pub_date | date:"Y년 m월 d일" }}</h2>
+        <hr>
+
+        <div class="img">
+          {% if blog.images %}
+            <img src="{{blog.image_thumbnail.url}}" width="300" height="200">
+          {% else %}
+            <img src="/static/cloud.jpg" alt="빈칸" width="300" height="200">
+          {% endif %}
+        </div>
+        
+        <h3>{{ blog.title }}</h3>
+        <p>{{blog.writer}}</p>
+        <p>{{ blog.summary }}</p>
+        <br>
+        <a href="{% url 'detail' blog.id %}"> 자세히 보기</a>
+      </div>
+    </div>
+</div>
+<br>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
