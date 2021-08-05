@@ -3,6 +3,30 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Blog
 from .forms import BlogForm
 from django.utils import timezone
+from django.core.mail import send_mail
+
+def email(request):
+    if request.method == 'POST':
+        name = request.POST.get('full-name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        data = {
+            'name' : name,
+            'email' : email,
+            'subject' : subject,
+            'message' : message
+        }
+        message = '''
+        New message: {}
+        
+        From: {}
+        '''.format(data['message'], data['email'])
+        send_mail(data['subject'], message, '', ['hayleyjhi@naver.com'])
+        
+    return render(request, 'mail.html', {})
+
 
 # Create your views here.
 

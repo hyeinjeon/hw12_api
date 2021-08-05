@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: rgb(176, 202, 151);
+      }
+    .mainbox {
+        background-color: white;
+        margin: auto;
+        border-radius: 50px;
+        padding: 30px;
+        width: 30%;
+
+    }
+    input {
+        background-color: rgb(239, 245, 185);
+        border-style: none;
+    }
+
+</style>
+
+<div class="mainbox">
+    <h2>쪽지쓰기</h2>
+    <hr>
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{chatform.as_p}}
+        <button type="submit">submit</button>
+    </form>
+</div>
+
+{% endblock %}

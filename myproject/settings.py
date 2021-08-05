@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crudapp.apps.CrudappConfig',
     'accounts.apps.AccountsConfig',
+    'chat.apps.ChatConfig',
+    'channels.apps.ChannelsConfig',
+    'chatting.apps.ChattingConfig',
 
     #allauth
     'allauth',
@@ -53,6 +56,11 @@ INSTALLED_APPS = [
     #imagekit
     'imagekit',
 ]
+
+# Channels
+ASGI_APPLICATION = 'myproject.routing.application'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -164,3 +172,13 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 ## 기타 설정들 ##
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'hayleyjhi@gmail.com' # ex) bum752@gmail.com
+EMAIL_HOST_PASSWORD = '38173817aa**' # ex) P@ssw0rd
+#SERVER_EMAIL = 'hayleyjhi@gmail.com' # ex) bum752@gmail.com
+#DEFAULT_FROM_MAIL = '38173817aa' # ex) bum752

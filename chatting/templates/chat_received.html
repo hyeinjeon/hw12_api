@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+body {
+    background-color: rgb(176, 202, 151);  
+}
+
+.container2 {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+    border-width: 2px;
+    margin: auto;
+    padding: 30px;
+    width: 50%;
+}
+
+</style>
+
+<h1> 쪽지 보관함 </h1>
+<br>
+
+{% for chat in chats.all %}
+
+<div class="container2"> 
+        <h2>{{ chat.title }}</h2>
+        <hr>
+        <p>{{ chat.pub_date | date:"Y년 m월 d일" }}</p>
+        <p>{{chat.writer}}</p>
+        <p>{{ chat.summary }}</p>
+        <br>
+        <a href="{% url 'chat_detail' chat.id %}"> 자세히 보기</a>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

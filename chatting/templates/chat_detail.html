@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+body {
+    background-color: rgb(176, 202, 151);  
+}
+
+.container2 {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+    border-width: 2px;
+    margin: auto;
+    padding: 30px;
+    width: 50%;
+}
+
+</style>
+
+<div class="container2">
+    <h1>{{ chat.title }}</h1>
+    <hr>
+    <div class="container3">
+        <p>{{ chat.pub_date | date:"Y년 m월 d일" }}</p>
+        <p>{{ chat.body }}</p> 
+    </div>
+</div>
+{% endblock %}

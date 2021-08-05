@@ -3,18 +3,21 @@
 {% block content %}
 <style>
 body {
-  background-color: rgb(184, 182, 182);
 }
+
 .container2 {
   text-align: left;
-  margin: 10px auto;
+  margin: 10px;
   padding: 20px;
   border-style: none;
+  border-radius: 10px;
   border-width: 2px;
-  background-color: white;
+  box-shadow: 5px 5px 5px;
+  background-color: rgb(176, 202, 151, 0.7);
   font-family: Arial, Helvetica, sans-serif;
-  width: 70%;
-  display: inline-block;
+  width: 30%;
+  display: inline-flex;
+  height: 93vh;
 }
 
 .img {
@@ -22,16 +25,29 @@ body {
   margin: 10px 30px 20px 10px;
 }
 
+.link {
+  text-decoration-line: none;
+  color: black;
+}
+
 
 </style>
 
+<a class="link" href="{% url 'mail' %}">메일보내기</a> |
+<a class="link" href="{% url 'chat_received' %}">쪽지 보관함</a> |
+<a class="link" href="{% url 'chat_new' %}">쪽지 쓰기</a> |
+<a class="link" href="{% url 'chat_send' %}">보낸 메세지</a>
+
+<br>
+<br>
+
 {% for blog in blogs.all %}
-<div class="container2"> 
+
+<span class="container2"> 
     <div class="cards">
       <div class="card-body">
-        <h2>{{ blog.pub_date | date:"Y년 m월 d일" }}</h2>
+        <h1>{{ blog.title }}</h1>
         <hr>
-
         <div class="img">
           {% if blog.images %}
             <img src="{{blog.image_thumbnail.url}}" width="300" height="200">
@@ -39,16 +55,20 @@ body {
             <img src="/static/cloud.jpg" alt="빈칸" width="300" height="200">
           {% endif %}
         </div>
-        
-        <h3>{{ blog.title }}</h3>
+        <br>
+        <p>{{ blog.pub_date | date:"Y년 m월 d일" }}</p>
         <p>{{blog.writer}}</p>
         <p>{{ blog.summary }}</p>
         <br>
         <a href="{% url 'detail' blog.id %}"> 자세히 보기</a>
       </div>
     </div>
-</div>
-<br>
+</span>
+
 {% endfor %}
+
+<br>
+<br>
+<a href="{% url 'index' %}">채팅- channel 이용/구현중단.클릭하지마시오.</a>
 
 {% endblock %}

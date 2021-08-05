@@ -25,4 +25,6 @@ urlpatterns = [
     path('crudapp/', include('crudapp.urls')),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
+    path('chat/', include('chat.urls')),
+    path('chatting/', include('chatting.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
