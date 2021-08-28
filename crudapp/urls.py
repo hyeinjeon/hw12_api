@@ -9,4 +9,5 @@ urlpatterns = [
     path('delete/<str:id>', delete, name="delete"),
     path('search', search, name='search'),
     path('mail/', email, name='mail'),
+    path('api/', api, name='api'),
 ]

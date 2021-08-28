@@ -4,14 +4,14 @@
 
 <style>
 body {
-    background-color: rgb(176, 202, 151);  
+    background-color: rgba(232, 233, 231, 0.842);
 }
 
 .container2 {
     background-color: white;
+    border-style: solid;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-    border-width: 2px;
+    border-width: 3px;
     margin: auto;
     padding: 30px;
     width: 50%;
@@ -19,13 +19,13 @@ body {
 
 </style>
 
-<h1> 쪽지 보관함 </h1>
+<h4> 💌 쪽지 보관함 💌 </h4>
 <br>
 
 {% for chat in chats.all %}
 
 <div class="container2"> 
-        <h2>{{ chat.title }}</h2>
+        <h4>{{ chat.title }}</h4>
         <hr>
         <p>{{ chat.pub_date | date:"Y년 m월 d일" }}</p>
         <p>{{chat.writer}}</p>

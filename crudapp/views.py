@@ -1,9 +1,11 @@
+from django import http
 from django.core import paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Blog
 from .forms import BlogForm
 from django.utils import timezone
 from django.core.mail import send_mail
+from datetime import date, datetime, timedelta
 
 def email(request):
     if request.method == 'POST':
@@ -34,9 +36,28 @@ def home(request):
     blogs = Blog.objects
     return render(request, 'home.html', {'blogs':blogs})
 
+def api(request):
+    return render(request, 'api.html')
+
 def detail(request, id):
     blog = get_object_or_404(Blog, pk = id)
-    return render(request, 'detail.html', {'blog':blog})
+    response =  render(request, 'detail.html', {'blog':blog})
+
+    #조회수 기능 (쿠키 이용)
+    expire_date, now = datetime.now(), datetime.now()
+    expire_date += timedelta(days=1)
+    expire_date = expire_date.replace(hour=0, minute=0, second=0, microsecond=0)
+    expire_date -= now
+    max_age = expire_date.total_seconds()
+
+    cookie_value = request.COOKIES.get('hitblog', '_')
+
+    if f'_{id}_' not in cookie_value:
+        cookie_value += f'{id}_'
+        response.set_cookie('hitblog', value=cookie_value, max_age=max_age, httponly=True)
+        blog.hits += 1
+        blog.save()
+    return response
 
 def new(request):
     if request.method == 'POST': #글을 작성한 후 저장 버튼을 눌렀을 때

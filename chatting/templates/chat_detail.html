@@ -4,27 +4,32 @@
 
 <style>
 body {
-    background-color: rgb(176, 202, 151);  
+    background-color: rgba(232, 233, 231, 0.842);
 }
 
 .container2 {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-    border-width: 2px;
+    border-style: solid;
+    border-width: 3px;
     margin: auto;
     padding: 30px;
     width: 50%;
+    height: 30vh;
+}
+
+.container3 {
+    padding: 10px;
 }
 
 </style>
 
 <div class="container2">
-    <h1>{{ chat.title }}</h1>
+    <h4>{{ chat.title }}</h4>
     <hr>
     <div class="container3">
-        <p>{{ chat.pub_date | date:"Y년 m월 d일" }}</p>
-        <p>{{ chat.body }}</p> 
+        <p>날짜: {{ chat.pub_date | date:"Y년 m월 d일" }}</p>
+        <p>내용: {{ chat.body }}</p> 
     </div>
 </div>
 {% endblock %}

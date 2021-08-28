@@ -10,10 +10,10 @@ class Blog(models.Model):
     body = models.TextField()
     images = models.ImageField(blank=True, upload_to="images", null=True)
     image_thumbnail = ImageSpecField(source = 'images', processors=[ResizeToFill(120,60)], format='JPEG')
- 
+    hits = models.PositiveIntegerField(default=0, verbose_name='조회수')
 
     def __str__(self):
         return self.title
 
     def summary(self):
-        return self.body[:150]
+        return self.body[:50]

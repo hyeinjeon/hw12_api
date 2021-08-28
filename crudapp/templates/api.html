@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<style>
+    #map {
+        margin: auto;
+    }
+</style>
+
+<!-- 지도 -->
+<h5>멋쟁이 사자처럼 위치</h5>
+<br>
+
+<div id="map" style="width:50%;height:400px;"></div>
+
+<script>
+var mapOptions = {
+    center: new naver.maps.LatLng(37.512384, 127.055155),
+    zoom: 19
+};
+
+var map = new naver.maps.Map('map', mapOptions);
+</script>
+
+
+
+{% endblock %}

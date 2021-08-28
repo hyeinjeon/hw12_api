@@ -3,7 +3,7 @@
 {% block content %}
 <style>
     body {
-        background-color: rgb(176, 202, 151);
+        background-color: rgba(232, 233, 231, 0.842);
       }
     .mainbox {
         background-color: #ffffff;
@@ -13,14 +13,14 @@
         width: 50%;
     }
     input {
-        background-color: rgb(239, 245, 185);
+        background-color: rgba(232, 233, 231, 0.842);
         border-style: none;
     }
 
 </style>
 
 <div class="mainbox">
-    <h2>식물 추가하기</h2>
+    <h4>책 글쓰기</h4>
     <hr>
     <form method="POST" enctype="multipart/form-data">
         {%csrf_token%}
